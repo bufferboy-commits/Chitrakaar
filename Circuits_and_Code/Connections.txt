@@ -1,0 +1,48 @@
+================================================================
+CNC 2D PEN PLOTTER - WIRING GUIDE
+Arduino Uno R4 + CNC Shield V3 + 2x Stepper + 1x Servo
+================================================================
+----------------------------------------------------------------
+STEPPER DRIVER PLACEMENT
+----------------------------------------------------------------
+X slot (C1)  --> Insert A4988 driver
+Y slot (C2)  --> Insert A4988 driver
+Z slot       --> Empty (not used)
+A slot       --> Empty (not used)
+
+----------------------------------------------------------------
+POWER CONNECTIONS
+----------------------------------------------------------------
+USB cable         --> Arduino Uno R4 (for code upload and
+                      Python serial communication)
+
+12V DC Adapter    --> CNC Shield power terminal
+  Positive (+)    --> + on shield (labeled 12-36V)
+  Negative (-)    --> - on shield (labeled 12-36V)
+
+----------------------------------------------------------------
+SERVO MOTOR --> Servo header on CNC Shield (Pin 11)
+----------------------------------------------------------------
+Signal wire  (Orange/Yellow) --> Signal pin on shield servo header
+VCC wire     (Red)           --> 5V pin on shield servo header
+GND wire     (Brown/Black)   --> GND pin on shield servo header
+
+NOTE: This header on the shield corresponds to Arduino Pin 11
+which matches SERVO_PIN 11 defined in the Arduino code
+
+----------------------------------------------------------------
+IMPORTANT NOTES
+----------------------------------------------------------------
+1. Check stepper motor datasheet for correct coil pairs
+   Wrong pairing = motor vibrates but does not move
+
+2. Set A4988 current limit before first run
+   Prevents motors and drivers from overheating
+
+3. Servo gets 5V from Arduino, not from 12V supply
+
+4. Never unplug stepper wires while power is on
+   This instantly damages the A4988 driver
+
+5. When uploading code, USB only is fine
+   When running the machine, both USB and 12V must be connected
